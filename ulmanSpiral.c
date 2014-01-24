@@ -1,23 +1,23 @@
 #include<stdio.h>
 
-int arr[5][5];
+int arr[7][7];
 int count=1;
 int cons =0;
 int k;
-int n=5;
+int n=7;
 void print_spiral();
-void draw_spiral(int,int * );
+void draw_spiral(int);
 void main()
 
 {
 	
-	draw_spiral(n,&arr[0][0]);
+	draw_spiral(n);
 	print_spiral();
 	
 	
 }
 
-void draw_spiral(int n, int * arr)
+void draw_spiral(int n)
 {	
 	
 	if(n==1)
@@ -29,30 +29,30 @@ void draw_spiral(int n, int * arr)
 	}
 	else
 	{
-		for(k = 0;k<n;k++)
+		for(k = cons;k<n+cons;k++)
 		{
 			
-			*(&arr[k][0])=count;
+			arr[k][cons]=count;
 			count++;
 		}
-		for(k = 1;k<n;k++)
+		for(k = 1 + cons;k<n+cons;k++)
 		{
-			arr[n-1][k]=count;
+			arr[n-1+cons][k]=count;
 			count++;
 		}
-		for(k = n-2;k >0;--k)
+		for(k = n-2+cons;k >=cons;--k)
 		{
-			arr[k][n-1]=count;
+			arr[k][n-1+cons]=count;
 			count++;
 		}
-		for(k = n-2;k >0;--k)
+		for(k = n-2+cons;k >cons;--k)
 		{
-			arr[0][k]=count;
+			arr[cons][k]=count;
 			count++;
 		}
 		n=n-2;
 		cons++;
-		draw_spiral(n,&arr[cons]);
+		draw_spiral(n);
 	}
 
 
@@ -66,7 +66,7 @@ void print_spiral()
 	{
 		for(l=0;l<n;l++)
 			{
-				printf("%d",arr[l][m]);
+				printf("%d	",arr[l][m]);
 			}
 		printf("\n");
 	}
